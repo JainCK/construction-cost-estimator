@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
+import { Facebook, Twitter, Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -14,28 +14,29 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="#"
+                href="https://www.jainck.me/"
                 className="text-muted-foreground hover:text-rose-500 transition-colors"
               >
                 <Facebook size={20} />
                 <span className="sr-only">Facebook</span>
               </Link>
               <Link
-                href="#"
+                href="https://twitter.com/jain_kuriakose"
                 className="text-muted-foreground hover:text-rose-500 transition-colors"
               >
                 <Twitter size={20} />
                 <span className="sr-only">Twitter</span>
               </Link>
               <Link
-                href="#"
+                href="https://github.com/JainCK
+"
                 className="text-muted-foreground hover:text-rose-500 transition-colors"
               >
-                <Instagram size={20} />
-                <span className="sr-only">Instagram</span>
+                <Github size={20} />
+                <span className="sr-only">Github</span>
               </Link>
               <Link
-                href="#"
+                href="https://www.linkedin.com/in/jainck"
                 className="text-muted-foreground hover:text-rose-500 transition-colors"
               >
                 <Linkedin size={20} />
@@ -65,7 +66,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/pricing"
+                  href="/"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   Pricing
@@ -73,7 +74,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href="/"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   Blog
@@ -87,7 +88,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="/guides"
+                  href="/"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   Guides
@@ -95,7 +96,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/materials"
+                  href="/"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   Material Database
@@ -103,7 +104,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/calculator"
+                  href="/estimate"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   Cost Calculator
@@ -111,7 +112,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/faq"
+                  href="/"
                   className="text-muted-foreground hover:text-rose-500 transition-colors"
                 >
                   FAQ
@@ -139,17 +140,17 @@ export default function Footer() {
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Construction Estimator. All rights
-            reserved.
+            reserved 2 JainCK.
           </p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <Link
-              href="/privacy"
+              href="/"
               className="text-sm text-muted-foreground hover:text-rose-500 transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="/terms"
+              href="/"
               className="text-sm text-muted-foreground hover:text-rose-500 transition-colors"
             >
               Terms of Service

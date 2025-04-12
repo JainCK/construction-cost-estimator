@@ -74,19 +74,8 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-// Mock materials data for demonstration
-const mockMaterials: Material[] = [
-  { id: "concrete", name: "Concrete", rate: 120, unit: "cubic meter" },
-  { id: "steel", name: "Steel Reinforcement", rate: 1200, unit: "ton" },
-  { id: "brick", name: "Brick", rate: 0.75, unit: "piece" },
-  { id: "sand", name: "Sand", rate: 35, unit: "cubic meter" },
-  { id: "timber", name: "Timber", rate: 600, unit: "cubic meter" },
-  { id: "glass", name: "Glass", rate: 45, unit: "square meter" },
-  { id: "paint", name: "Paint", rate: 12, unit: "liter" },
-];
-
 export default function EstimatePage() {
-  const [materials, setMaterials] = useState<Material[]>(mockMaterials);
+  const [materials, setMaterials] = useState<Material[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -119,14 +108,10 @@ export default function EstimatePage() {
   useEffect(() => {
     async function fetchMaterials() {
       try {
-        // Commented out actual API call and using mock data instead
-        // const response = await fetch("/api/materials");
-        // if (!response.ok) throw new Error("Failed to fetch materials");
-        // const data = await response.json();
-        // setMaterials(data);
-
-        // Using mock data
-        setMaterials(mockMaterials);
+        const response = await fetch("/api/materials");
+        if (!response.ok) throw new Error("Failed to fetch materials");
+        const data = await response.json();
+        setMaterials(data);
       } catch (error) {
         console.error("Error fetching materials:", error);
       }
@@ -140,12 +125,18 @@ export default function EstimatePage() {
     setIsLoading(true);
     console.log("Form Values being sent:", JSON.stringify(values, null, 2));
     try {
-      // Mocking API call for demonstration
-      // In a real app, this would be an actual API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Navigate to a mock results page
-      router.push(`/results?id=mock-project-id`);
+      const response = await fetch("/api/calculate-cost", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
+      }
+      const data = await response.json();
+      router.push(`/results?id=${data.projectId}`);
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -189,7 +180,7 @@ export default function EstimatePage() {
         <motion.div variants={container} initial="hidden" animate="show">
           <Card className="border-none shadow-xl overflow-hidden bg-gradient-to-br from-white to-rose-50/30 dark:from-gray-900 dark:to-gray-800/50">
             <CardHeader className="bg-gradient-to-r from-rose-500/10 to-amber-500/10 dark:from-rose-900/20 dark:to-amber-900/20 border-b">
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center pt-5 gap-2">
                 <Calculator className="h-6 w-6 text-rose-500 dark:text-rose-400" />
                 Enter your project information
               </CardTitle>

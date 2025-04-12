@@ -113,7 +113,8 @@ export default function Home() {
               <CardContent>
                 <p className="text-muted-foreground">
                   Select from concrete, steel, lumber, and other building
-                  materials with pre-loaded market rates that update regularly.
+                  materials with pre-loaded market rates that update regularly
+                  and accurately.
                 </p>
               </CardContent>
             </Card>
