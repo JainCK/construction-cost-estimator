@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findMaterialAlternatives } from "@/lib/materials";
+import { NextApiRequest } from 'next'; // Import NextApiRequest (even though it's an App Router)
 
 interface Params {
   materialId: string;
@@ -11,10 +12,10 @@ interface Context {
 
 export async function GET(
   request: NextRequest,
-  context: Context
+  { params }: { params: Params } // Directly destructure and type 'params'
 ) {
   try {
-    const materialId = context.params.materialId;
+    const materialId = params.materialId;
     const searchParams = request.nextUrl.searchParams;
     const quantity = parseInt(searchParams.get("quantity") || "1");
 
