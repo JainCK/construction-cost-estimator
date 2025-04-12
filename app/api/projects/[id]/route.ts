@@ -1,5 +1,3 @@
-// app/api/projects/[id]/route.ts
-
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/lib/generated/prisma";
 import { calculateProjectCost } from "@/lib/costCalculator";

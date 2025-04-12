@@ -1,19 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { findMaterialAlternatives } from "@/lib/materials";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { materialId: string } }
-) {
-  try {
-    // Destructure materialId from params
-    const { materialId } = params;
+interface Params {
+  materialId: string;
+}
 
-    // Parse query parameters
-    const searchParams = new URL(request.url).searchParams;
+interface RouteContext {
+  params: Params;
+}
+
+export async function GET(request: NextRequest, context: RouteContext) {
+  try {
+    const materialId = context.params.materialId;
+    const searchParams = request.nextUrl.searchParams;
     const quantity = parseInt(searchParams.get("quantity") || "1");
 
-    // Validate quantity
     if (isNaN(quantity) || quantity <= 0) {
       return NextResponse.json(
         { error: "Invalid quantity parameter" },
@@ -21,10 +22,7 @@ export async function GET(
       );
     }
 
-    // Fetch material alternatives
     const alternatives = await findMaterialAlternatives(materialId, quantity);
-
-    // Return the alternatives as JSON
     return NextResponse.json(alternatives);
   } catch (error) {
     console.error("Error finding material alternatives:", error);
