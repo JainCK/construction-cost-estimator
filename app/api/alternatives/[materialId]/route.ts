@@ -6,8 +6,7 @@ export async function GET(
   context: { params: { materialId: string } }
 ) {
   try {
-    const { params } = context;
-    const materialId = await params.materialId;
+    const { materialId } = context.params;
     const searchParams = new URL(request.url).searchParams;
     const quantity = parseInt(searchParams.get("quantity") || "1");
 
