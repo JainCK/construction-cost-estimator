@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findMaterialAlternatives } from "@/lib/materials";
 
+interface Params {
+  materialId: string;
+}
+
+interface Context {
+  params: Params;
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { materialId: string } }
+  context: Context
 ) {
   try {
-    const materialId = params.materialId;
+    const materialId = context.params.materialId;
     const searchParams = request.nextUrl.searchParams;
     const quantity = parseInt(searchParams.get("quantity") || "1");
 
