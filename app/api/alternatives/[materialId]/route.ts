@@ -3,10 +3,11 @@ import { findMaterialAlternatives } from "@/lib/materials";
 
 export async function GET(
   request: Request,
-  { params }: { params: { materialId: string } }
+  context: { params: { materialId: string } }
 ) {
   try {
-    const { materialId } = params;
+    const { params } = context;
+    const materialId = await params.materialId;
     const searchParams = new URL(request.url).searchParams;
     const quantity = parseInt(searchParams.get("quantity") || "1");
 
