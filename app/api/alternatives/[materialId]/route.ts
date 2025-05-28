@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import { NextRequest, NextResponse } from "next/server";
 import { findMaterialAlternatives } from "@/lib/materials";
 
